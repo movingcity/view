@@ -46,7 +46,7 @@
                       </div>
                     </template>
                   </vxe-table-column>
-                  <vxe-table-column sortable field="FlightNumber" width="70">
+                  <vxe-table-column sortable field="FlightNumber" width="90">
                     <template v-slot:header>
                       <div class="first-col">
                         <div class="first-col-top">{{ columnHeader[1] }}</div>

@@ -96,98 +96,98 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: '参考数据',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: '资源' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: '停机位' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: '登机口' }
-          },
-          {
-            path: 'menu1-2-1',
-            component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-            name: 'Menu1-2-1',
-            meta: { title: '行李转盘' }
-          },
-          {
-            path: 'menu1-2-2',
-            component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-            name: 'Menu1-2-2',
-            meta: { title: '值机柜台' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: '机型' }
-      },
-      {
-        path: 'menu3',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu3',
-        meta: { title: '航空公司' }
-      }
-    ]
-  },
-  {
-    path: '/management',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'aNested',
-    meta: {
-      title: '系统管理',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1-1',
-        component: () => import('@/views/nested/menu1/menu1-1'),
-        name: 'aMenu1-1',
-        meta: { title: '个人设置' }
-      },
-      {
-        path: 'menu1-2',
-        component: () => import('@/views/nested/menu1/menu1-2'),
-        name: 'aMenu1-2',
-        meta: { title: '角色管理' }
-      },
-      {
-        path: 'menu1-2-1',
-        component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-        name: 'aMenu1-2-1',
-        meta: { title: '用户管理' }
-      },
-      {
-        path: 'menu1-2-2',
-        component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-        name: 'aMenu1-2-2',
-        meta: { title: '操作日志' }
-      }
-    ]
-  },
+  // {
+  //   path: '/nested',
+  //   component: Layout,
+  //   redirect: '/nested/menu1',
+  //   name: 'Nested',
+  //   meta: {
+  //     title: '参考数据',
+  //     icon: 'nested'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'menu1',
+  //       component: () => import('@/views/nested/menu1/index'), // Parent router-view
+  //       name: 'Menu1',
+  //       meta: { title: '资源' },
+  //       children: [
+  //         {
+  //           path: 'menu1-1',
+  //           component: () => import('@/views/nested/menu1/menu1-1'),
+  //           name: 'Menu1-1',
+  //           meta: { title: '停机位' }
+  //         },
+  //         {
+  //           path: 'menu1-2',
+  //           component: () => import('@/views/nested/menu1/menu1-2'),
+  //           name: 'Menu1-2',
+  //           meta: { title: '登机口' }
+  //         },
+  //         {
+  //           path: 'menu1-2-1',
+  //           component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+  //           name: 'Menu1-2-1',
+  //           meta: { title: '行李转盘' }
+  //         },
+  //         {
+  //           path: 'menu1-2-2',
+  //           component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+  //           name: 'Menu1-2-2',
+  //           meta: { title: '值机柜台' }
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: 'menu2',
+  //       component: () => import('@/views/nested/menu2/index'),
+  //       name: 'Menu2',
+  //       meta: { title: '机型' }
+  //     },
+  //     {
+  //       path: 'menu3',
+  //       component: () => import('@/views/nested/menu2/index'),
+  //       name: 'Menu3',
+  //       meta: { title: '航空公司' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/management',
+  //   component: Layout,
+  //   redirect: '/nested/menu1',
+  //   name: 'aNested',
+  //   meta: {
+  //     title: '系统管理',
+  //     icon: 'nested'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'menu1-1',
+  //       component: () => import('@/views/nested/menu1/menu1-1'),
+  //       name: 'aMenu1-1',
+  //       meta: { title: '个人设置' }
+  //     },
+  //     {
+  //       path: 'menu1-2',
+  //       component: () => import('@/views/nested/menu1/menu1-2'),
+  //       name: 'aMenu1-2',
+  //       meta: { title: '角色管理' }
+  //     },
+  //     {
+  //       path: 'menu1-2-1',
+  //       component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+  //       name: 'aMenu1-2-1',
+  //       meta: { title: '用户管理' }
+  //     },
+  //     {
+  //       path: 'menu1-2-2',
+  //       component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+  //       name: 'aMenu1-2-2',
+  //       meta: { title: '操作日志' }
+  //     }
+  //   ]
+  // },
   // {
   //   path: '/example',
   //   component: Layout,

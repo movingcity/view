@@ -13,7 +13,7 @@ const name = defaultSettings.title || 'VIEW 2.0' // page title
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
-const port = process.env.port || process.env.npm_config_port || 8888 // dev port
+const port = process.env.port || process.env.npm_config_port || 8080 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -47,7 +47,8 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    devtool: 'source-map'
   },
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
@@ -80,7 +81,11 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
-
+    config
+      // https://webpack.js.org/configuration/devtool/#development
+      .when(process.env.NODE_ENV === 'development',
+        config => config.devtool('cheap-source-map')
+      )
     config
       .when(process.env.NODE_ENV !== 'development',
         config => {
@@ -110,6 +115,13 @@ module.exports = {
                 commons: {
                   name: 'chunk-commons',
                   test: resolve('src/components'), // can customize your rules
+                  minChunks: 3, //  minimum common number
+                  priority: 5,
+                  reuseExistingChunk: true
+                },
+                views: {
+                  name: 'chunk-commons',
+                  test: resolve('src/views'), // can customize your rules
                   minChunks: 3, //  minimum common number
                   priority: 5,
                   reuseExistingChunk: true

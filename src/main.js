@@ -3,7 +3,8 @@ import Vue from 'vue'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
+import '@/styles/element-ui.css'
 
 import '@/styles/index.scss' // global css
 
@@ -15,6 +16,7 @@ import router from './router'
 import i18n from './lang' // Internationalization
 
 import '@/icons' // icon
+
 // import '@/permission' // permission control
 
 /**
@@ -36,6 +38,20 @@ Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)// 在注册Element时设置i18n的处理方法
 })
 
+import Table from 'buefy'
+import 'buefy/dist/buefy.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+// internal icons
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(fas)
+Vue.component('vue-fontawesome', FontAwesomeIcon)
+
+Vue.use(Table, {
+  defaultIconComponent: 'vue-fontawesome',
+  defaultIconPack: 'fas'
+})
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,5 +1,5 @@
 <template>
-  <el-table
+  <!-- <el-table
     ref="dataTable"
     :data="filteredList"
     style="width: 100%"
@@ -12,94 +12,43 @@
     stripe
     highlight-current-row
     v-on="$listeners"
-  >
-    <template v-for="colConfig in colConfigs">
-      <slot
-        v-if="colConfig.slot"
-        :name="colConfig.slot"
-      />
-      <component
-        :is="colConfig.component"
-        v-else-if="colConfig.component"
-        :key="colConfig.id"
-        :col-config="colConfig"
-      />
-      <el-table-column
-        v-else
-        :key="colConfig.id"
-        min-width="100px"
-        sortable
-        :fixed="colConfig.fixed"
-        v-bind="colConfig"
-      >
-        <template v-slot:header>
-          <div>
-            <div>{{ colConfig.label }}</div>
-            <el-input
-              v-model="colConfig.filter"
-              class="inputFilter"
-              @click.native.stop
-            />
-          </div>
-        </template>
-      </el-table-column>
-    </template>
-  </el-table>
+  > -->
+  <div style="overflow:auto">
+    <b-table
+      ref="dataTable"
+      :height="tableHeight"
+      :columns="configs.columns"
+      :data="configs.dataTable"
+      style="white-space: nowrap"
+      hoverable
+      v-bind="$attrs"
+      sort-icon="menu-up"
+      sort-icon-size="is-small"
+    />
+  </div>
 </template>
 
 <script>
 export default {
   name: 'EnhancedTable',
   props: {
-    colConfigs: {
-      type: Array,
-      default: () => []
-    },
-    tableData: {
-      type: Array,
-      default: () => []
+    configs: {
+      type: Object,
+      default: () => { }
     }
   },
-  data() {
+  data () {
     return {
       listLoading: true,
       showTabs: false,
       tabPosition: 'right',
-      tableHeight: window.innerHeight - 100,
       masterSpan: 24,
       sideSpan: 0,
-      selectedRow: null
+      selectedRow: null,
+      tableHeight: window.innerHeight - 100
     }
-  },
-  computed: {
-    filteredList() {
-      if (this.tableData && this.colConfigs) {
-        return this.tableData.filter(item => {
-          var result = true
-          this.colConfigs.forEach(colConfig => {
-            if (colConfig.filter && colConfig.prop) {
-              result =
-                result &&
-                new RegExp(colConfig.filter, 'gi').test(item[colConfig.prop])
-            }
-          })
-          return result
-        })
-      } else {
-        return this.tableData
-      }
-    }
-  },
-  methods: {}
+  }
 }
 </script>
 <style>
-.inputFilter input.el-input__inner {
-  font-size: 11px;
-}
-.el-table .caret-wrapper {
-  position: absolute;
-  top: -5px;
-  right: 0px;
-}
 </style>

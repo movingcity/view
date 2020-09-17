@@ -3,26 +3,26 @@
     <el-row>
       <el-col>
         <el-row :gutter="20">
-          <el-col :span="masterSpan"><template>
-            <div>
-              <enhanced-table
-                :table-data="list"
-                :col-configs="colConfigs"
-                @row-dblclick="rowdblclick"
-                @current-change="currentchange"
-              >
-                <!--  :default-sort="{prop: 'Sto', order: 'ascending'}"
-                default-sort会报错，暂时没发现影响，像是个bug https://github.com/ElemeFE/element/pull/17113 -->
-                <!-- <el-table-column
+          <el-col :span="masterSpan">
+            <template>
+              <div>
+                <enhanced-table
+                  :table-data="list"
+                  :col-configs="colConfigs"
+                  @row-dblclick="rowdblclick"
+                  @current-change="currentchange"
+                >
+                  <!--  :default-sort="{prop: 'Sto', order: 'ascending'}"
+                  default-sort会报错，暂时没发现影响，像是个bug https://github.com/ElemeFE/element/pull/17113-->
+                  <!-- <el-table-column
                   slot="options"
                   label="操作"
                 >
                   <el-button slot-scope="{ row }" size="mini">查看</el-button>
-                </el-table-column> -->
-              </enhanced-table>
-            </div>
-          </template>
-
+                  </el-table-column>-->
+                </enhanced-table>
+              </div>
+            </template>
           </el-col>
           <el-col :span="sideSpan">
             <el-tabs
@@ -37,31 +37,52 @@
               <el-tab-pane label="详细信息">
                 <div style="padding: 2px;font-size: 12px">
                   <el-row class="el-row">
-                    <el-col :span="16"><span>航空公司：</span></el-col>
-                    <el-col :span="8"><span>{{ selectedRow.Airline }}</span></el-col>
+                    <el-col :span="16">
+                      <span>航空公司：</span>
+                    </el-col>
+                    <el-col :span="8">
+                      <span>{{ selectedRow.Airline }}</span>
+                    </el-col>
                   </el-row>
                   <el-row class="el-row">
                     <el-col :span="16">航班号：</el-col>
-                    <el-col :span="8">{{ selectedRow.Airline }}{{ selectedRow.FlightNumber }}</el-col>
+                    <el-col :span="8">{{ selectedRow.Airline
+                    }}{{ selectedRow.FlightNumber }}</el-col>
                   </el-row>
                 </div>
               </el-tab-pane>
-              <el-tab-pane v-if="selectedRow" label="关联信息">
+              <el-tab-pane
+                v-if="selectedRow"
+                label="关联信息"
+              >
                 <div style="padding: 2px;font-size: 12px">
                   <el-row class="el-row">
                     <el-col :span="16">前后接飞：</el-col>
-                    <el-col :span="8">{{ selectedRow.Airline }}{{ selectedRow.FlightNumber }}</el-col>
+                    <el-col :span="8">{{ selectedRow.Airline
+                    }}{{ selectedRow.FlightNumber }}</el-col>
                   </el-row>
                   <el-row class="el-row">
                     <el-col :span="16">代码共享：</el-col>
-                    <el-col :span="8">{{ selectedRow.Airline }}{{ selectedRow.FlightNumber }}</el-col>
+                    <el-col :span="8">{{ selectedRow.Airline
+                    }}{{ selectedRow.FlightNumber }}</el-col>
                   </el-row>
                 </div>
               </el-tab-pane>
-              <el-tab-pane key="tabVIP" label="VIP">VIP</el-tab-pane>
-              <el-tab-pane key="tabOther" label="保障信息">保障信息</el-tab-pane>
+              <el-tab-pane
+                key="tabVIP"
+                label="VIP"
+              >VIP</el-tab-pane>
+              <el-tab-pane
+                key="tabOther"
+                label="保障信息"
+              >保障信息</el-tab-pane>
             </el-tabs>
-            <el-button type="primary" size="mini" style="float: right;margin: 2px" @click="closeDetail">关闭</el-button>
+            <el-button
+              type="primary"
+              size="mini"
+              style="float: right;margin: 2px"
+              @click="closeDetail"
+            >关闭</el-button>
           </el-col>
         </el-row>
       </el-col>
@@ -71,9 +92,10 @@
 <script>
 import EnhancedTable from '@/components/my-table.vue'
 import { getList } from '@/api/table'
+
 export default {
   filters: {
-    statusFilter(status) {
+    statusFilter (status) {
       const statusMap = {
         起飞: 'success',
         到达: 'gray',
@@ -85,7 +107,7 @@ export default {
   components: {
     'enhanced-table': EnhancedTable
   },
-  data() {
+  data () {
     return {
       list: null,
       listLoading: true,
@@ -95,34 +117,97 @@ export default {
       sideSpan: 0,
       selectedRow: null,
       colConfigs: [
-        { prop: 'Airline', label: '航空公司', fixed: true, filter: '' },
-        { prop: 'FlightNumber', label: '航班号', fixed: true, filter: '' },
-        { prop: 'Sto', label: '计划时间', fixed: false, filter: '' },
-        { prop: 'MovementIndicator', label: '到达/出发', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { prop: 'AircraftType', label: '机型', fixed: false, filter: '' },
-        { slot: 'options', message: 'message' }
+        {
+          prop: 'Airline',
+          label: '航空公司',
+          fixed: true,
+          filter: ''
+        },
+        {
+          prop: 'FlightNumber',
+          label: '航班号',
+          fixed: true,
+          filter: ''
+        },
+        {
+          prop: 'Sto',
+          label: '计划时间',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'MovementIndicator',
+          label: '到达/出发',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          prop: 'AircraftType',
+          label: '机型',
+          fixed: false,
+          filter: ''
+        },
+        {
+          slot: 'options',
+          message: 'message'
+        }
       ]
     }
   },
-  created() {
+  created () {
     this.fetchData()
   },
   methods: {
-    fetchData() {
+    fetchData () {
       this.listLoading = true
       getList().then(response => {
         this.list = response.data.items
         this.listLoading = false
       })
     },
-    rowdblclick(row, column) {
+    rowdblclick (row, column) {
       this.selectedRow = row
       if (this.selectedRow == null) {
         this.masterSpan = 24
@@ -132,23 +217,21 @@ export default {
         this.sideSpan = 6
       }
     },
-    closeDetail() {
+    closeDetail () {
       this.masterSpan = 24
       this.sideSpan = 0
     },
-    currentchange(val) {
+    currentchange (val) {
       this.selectedRow = val
     }
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 <style>
 .inputFilter input.el-input__inner {
-height: 20px;
-padding: 3px;
+  height: 20px;
+  padding: 3px;
 }
 </style>

@@ -4,8 +4,8 @@
     :data="filteredList"
     style="width: 100%"
     size="mini"
-    :row-style="{height: '0'}"
-    :cell-style="{padding: '0'}"
+    :row-style="{ height: '0' }"
+    :cell-style="{ padding: '0' }"
     :height="tableHeight"
     v-bind="$attrs"
     border
@@ -14,7 +14,10 @@
     v-on="$listeners"
   >
     <template v-for="colConfig in colConfigs">
-      <slot v-if="colConfig.slot" :name="colConfig.slot" />
+      <slot
+        v-if="colConfig.slot"
+        :name="colConfig.slot"
+      />
       <component
         :is="colConfig.component"
         v-else-if="colConfig.component"
@@ -31,8 +34,12 @@
       >
         <template v-slot:header>
           <div>
-            <div>{{ colConfig.label }} </div>
-            <el-input v-model="colConfig.filter" class="inputFilter" @click.native.stop="" />
+            <div>{{ colConfig.label }}</div>
+            <el-input
+              v-model="colConfig.filter"
+              class="inputFilter"
+              @click.native.stop
+            />
           </div>
         </template>
       </el-table-column>
@@ -41,10 +48,8 @@
 </template>
 
 <script>
-
 export default {
   name: 'EnhancedTable',
-
   props: {
     colConfigs: {
       type: Array,
@@ -64,17 +69,18 @@ export default {
       masterSpan: 24,
       sideSpan: 0,
       selectedRow: null
-
     }
   },
   computed: {
     filteredList() {
       if (this.tableData && this.colConfigs) {
-        return this.tableData.filter((item) => {
+        return this.tableData.filter(item => {
           var result = true
           this.colConfigs.forEach(colConfig => {
             if (colConfig.filter && colConfig.prop) {
-              result = result && (new RegExp(colConfig.filter, 'gi').test(item[colConfig.prop]))
+              result =
+                result &&
+                new RegExp(colConfig.filter, 'gi').test(item[colConfig.prop])
             }
           })
           return result
@@ -84,18 +90,16 @@ export default {
       }
     }
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 <style>
- .inputFilter input.el-input__inner {
-   font-size: 11px;
+.inputFilter input.el-input__inner {
+  font-size: 11px;
 }
- .el-table .caret-wrapper{
-   position:absolute;
-   top:-5px;
-   right:0px;
+.el-table .caret-wrapper {
+  position: absolute;
+  top: -5px;
+  right: 0px;
 }
 </style>

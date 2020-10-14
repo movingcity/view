@@ -7,9 +7,9 @@ export function getList (params) {
     params
   })
 }
-export function getAircraftTypeList (params) {
+export function getAircraftTypes (params) {
   return request({
-    url: '/vue-admin-template/table/aircraftTypeList',
+    url: '/view/aircraft-types',
     method: 'get',
     params
   })

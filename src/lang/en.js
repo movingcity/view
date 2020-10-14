@@ -4,21 +4,22 @@ module.exports = {
     reference: 'Reference',
     aircraftType: 'Aircraft Type'
   },
-  aircraft_type: {
-    iata_code: 'IATA',
-    icao_code: 'ICAO',
+  aircraftType: {
+    id: 'id',
+    iataCode: 'IATA',
+    icaoCode: 'ICAO',
     description: 'Description',
-    local_description: 'Alternate Language Description',
-    size_category: 'Size',
-    max_pax: 'Max Passengers',
-    max_freight_weight: 'Max Freight Wt',
-    max_takeoff_weight: 'Max Take Off Wt',
-    aircraft_length: 'Overall Length',
-    wing_span: 'Wing Span',
-    min_handling_time: 'Min Hand Time',
-    max_airbridge: 'Max Airbridge Fingers',
-    create_time: 'Created',
-    update_time: 'Updated'
+    localDescription: 'Alternate Language Description',
+    sizeCategory: 'Size',
+    maxPax: 'Max Passengers',
+    maxFreightWeight: 'Max Freight Wt',
+    maxTakeoffWeight: 'Max Take Off Wt',
+    aircraftLength: 'Overall Length',
+    wingSpan: 'Wing Span',
+    minHandlingTime: 'Min Hand Time',
+    maxAirbridge: 'Max Airbridge Fingers',
+    createTime: 'Created',
+    updateTime: 'Updated'
   },
   i18nView: {
     title: 'Switch Language',

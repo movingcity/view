@@ -40,8 +40,8 @@ Vue.use(ElementUI, {
 
 import Table from 'buefy'
 import 'buefy/dist/buefy.css'
-import { library } from '@fortawesome/fontawesome-svg-core'
 // internal icons
+import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 

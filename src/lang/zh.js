@@ -4,21 +4,22 @@ module.exports = {
     reference: '参考数据',
     aircraftType: '机型'
   },
-  aircraft_type: {
-    iata_code: 'IATA',
-    icao_code: 'ICAO',
+  aircraftType: {
+    id: 'id',
+    iataCode: 'IATA',
+    icaoCode: 'ICAO',
     description: '描述',
-    local_description: '中文描述',
-    size_category: '尺寸',
-    max_pax: '最大旅客数  ',
-    max_freight_weight: '最大载货量  ',
-    max_takeoff_weight: '最大起飞重量  ',
-    aircraft_length: '飞机总长  ',
-    wing_span: '翼展宽度  ',
-    min_handling_time: '最短处置时间  ',
-    max_airbridge: '最大登机桥脚臂  ',
-    create_time: '创建时间',
-    update_time: '更新时间'
+    localDescription: '中文描述',
+    sizeCategory: '尺寸',
+    maxPax: '最大旅客数  ',
+    maxFreightWeight: '最大载货量  ',
+    maxTakeoffWeight: '最大起飞重量  ',
+    aircraftLength: '飞机总长  ',
+    wingSpan: '翼展宽度  ',
+    minHandlingTime: '最短处置时间  ',
+    maxAirbridge: '最大登机桥脚臂  ',
+    createTime: '创建时间',
+    updateTime: '更新时间'
   },
 
   i18nView: {

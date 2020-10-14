@@ -1,11 +1,13 @@
 <template>
-  <div class="app-container">
-    <enhanced-table :configs="colConfigs" />
-  </div>
+  <section class="section">
+    <div class="container">
+      <enhanced-table :configs="colConfigs" />
+    </div>
+  </section>
 </template>
 <script>
 import EnhancedTable from '@/components/my-table.vue'
-import { getAircraftTypeList } from '@/api/table'
+import { getAircraftTypes } from '@/api/table'
 
 export default {
   filters: {
@@ -16,26 +18,27 @@ export default {
   },
   data () {
     return {
-      listLoading: true,
+      isLoading: true,
       tableHeight: window.innerHeight - 100,
       colConfigs:
       {
+        isLoading: this.isLoading,
         columns: [
-          { field: 'iata_code', label: this.$t('aircraft_type.iata_code'), sticky: true, width: '80', searchable: true, sortable: true },
-          { field: 'icao_code', label: this.$t('aircraft_type.icao_code'), width: '80', searchable: true, sortable: true },
-          { field: 'description', label: this.$t('aircraft_type.description'), width: '200', searchable: true, sortable: true },
-          { field: 'local_description', label: this.$t('aircraft_type.local_description'), width: '200', searchable: true, sortable: true },
-          { field: 'size_category', label: this.$t('aircraft_type.size_category'), searchable: true, sortable: true },
-          { field: 'max_pax', label: this.$t('aircraft_type.max_pax'), searchable: true, sortable: true },
-          { field: 'max_freight_weight', label: this.$t('aircraft_type.max_freight_weight'), searchable: true, sortable: true },
-          { field: 'max_takeoff_weight', label: this.$t('aircraft_type.max_takeoff_weight'), searchable: true, sortable: true },
-          { field: 'aircraft_length', label: this.$t('aircraft_type.aircraft_length'), searchable: true, sortable: true },
-          { field: 'wing_span', label: this.$t('aircraft_type.wing_span'), searchable: true, sortable: true },
-          { field: 'min_handling_time', label: this.$t('aircraft_type.min_handling_time'), searchable: true, sortable: true },
-          { field: 'max_airbridge', label: this.$t('aircraft_type.max_airbridge'), searchable: true, sortable: true },
-          { field: 'create_time', label: this.$t('aircraft_type.create_time'), searchable: true, sortable: true },
-          { field: 'update_time', label: this.$t('aircraft_type.update_time'), searchable: true, sortable: true }
-
+          // { field: 'id', label: this.$t('aircraftType.id'), searchable: true, sortable: true },
+          { field: 'iataCode', label: this.$t('aircraftType.iataCode'), sticky: true, headerClass: 'sticky-column-header', cellClass: 'sticky-column-header', width: '80', searchable: true, sortable: true, numeric: false },
+          { field: 'icaoCode', label: this.$t('aircraftType.icaoCode'), searchable: true, sortable: true, numeric: false },
+          { field: 'description', label: this.$t('aircraftType.description'), searchable: true, sortable: true, numeric: false },
+          { field: 'localDescription', label: this.$t('aircraftType.localDescription'), searchable: true, sortable: true, numeric: false },
+          { field: 'sizeCategory', label: this.$t('aircraftType.sizeCategory'), searchable: true, sortable: true, numeric: false },
+          { field: 'maxPax', label: this.$t('aircraftType.maxPax'), searchable: true, sortable: true, numeric: false },
+          { field: 'maxFreightWeight', label: this.$t('aircraftType.maxFreightWeight'), searchable: true, sortable: true, numeric: false },
+          { field: 'maxTakeoffWeight', label: this.$t('aircraftType.maxTakeoffWeight'), searchable: true, sortable: true, numeric: false },
+          { field: 'aircraftLength', label: this.$t('aircraftType.aircraftLength'), searchable: true, sortable: true, numeric: false },
+          { field: 'wingSpan', label: this.$t('aircraftType.wingSpan'), searchable: true, sortable: true, numeric: false },
+          { field: 'minHandlingTime', label: this.$t('aircraftType.minHandlingTime'), searchable: true, sortable: true, numeric: false },
+          { field: 'maxAirbridge', label: this.$t('aircraftType.maxAirbridge'), searchable: true, sortable: true, numeric: false },
+          { field: 'createTime', label: this.$t('aircraftType.createTime'), searchable: true, sortable: true, numeric: false },
+          { field: 'updateTime', label: this.$t('aircraftType.updateTime'), searchable: true, sortable: true, numeric: false }
         ],
         dataTable: []
       }
@@ -46,10 +49,43 @@ export default {
   },
   methods: {
     fetchData () {
-      this.listLoading = true
-      getAircraftTypeList().then((response) => {
-        this.colConfigs.dataTable = response.data.items
-        this.listLoading = false
+      this.isLoading = true
+      getAircraftTypes().then((response) => {
+        if (response.code === '00000') {
+          var v = JSON.stringify(response.data)
+
+          if (window.JSON && !window.JSON.dateParser) {
+            var reISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/
+            var reMsAjax = /^\/Date\((d|-|.*)\)[\/|\\]$/
+
+            JSON.dateParser = function (key, value) {
+              if (typeof value === 'string') {
+                var a = reISO.exec(value)
+                if (a) { return new Date(value).toISOString().replace(/T/, ' ').replace(/\..+/, '') }
+                a = reMsAjax.exec(value)
+                if (a) {
+                  var b = a[1].split(/[-+,.]/)
+                  return new Date(b[0] ? +b[0] : 0 - +b[1]).toISOString().replace(/T/, ' ').replace(/\..+/, '')
+                }
+              }
+              if (typeof value === 'number') {
+                return value.toString()
+              }
+              return value
+            }
+          }
+
+          this.colConfigs.dataTable = JSON.parse(v, JSON.dateParser)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 0,
+            message: '系统执行出错，没有成功获取返回数据',
+            type: 'error'
+          })
+        }
+
+        this.isLoading = false
       })
     },
     currentchange (val) {

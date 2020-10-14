@@ -30,23 +30,23 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    // proxy: {
-    //   '/dev-api/view/': {
-    //     target: 'http://49.233.12.156:8080',
-    //     changeOrigin: true, // 配置跨域
-    //     pathRewrite: {
-    //       ['^' + process.env.VUE_APP_BASE_API]: ''
-    //     }
-    //   }
-    // },
+    proxy: {
+      '/dev-api/view/': {
+        target: 'http://49.233.12.156:8080',
+        changeOrigin: true, // 配置跨域
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    },
     port: port,
     open: true,
     overlay: {
       warnings: false,
       errors: true
     },
-    disableHostCheck: true,
-    before: require('./mock/mock-server.js')
+    disableHostCheck: true
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

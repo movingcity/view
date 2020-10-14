@@ -1,9 +1,7 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <enhanced-table :configs="colConfigs" />
-    </div>
-  </section>
+  <div class="table-container">
+    <enhanced-table :configs="colConfigs" />
+  </div>
 </template>
 <script>
 import EnhancedTable from '@/components/my-table.vue'
@@ -19,7 +17,6 @@ export default {
   data () {
     return {
       isLoading: true,
-      tableHeight: window.innerHeight - 100,
       colConfigs:
       {
         isLoading: this.isLoading,
@@ -88,6 +85,7 @@ export default {
         this.isLoading = false
       })
     },
+
     currentchange (val) {
       this.selectedRow = val
     }
@@ -97,8 +95,4 @@ export default {
 
 <style scoped></style>
 <style>
-.inputFilter input.el-input__inner {
-  height: 20px;
-  padding: 3px;
-}
 </style>

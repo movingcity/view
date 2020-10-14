@@ -2,7 +2,7 @@
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
 
-function resolve(dir) {
+function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
@@ -30,6 +30,15 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
+    // proxy: {
+    //   '/dev-api/view/': {
+    //     target: 'http://49.233.12.156:8080',
+    //     changeOrigin: true, // 配置跨域
+    //     pathRewrite: {
+    //       ['^' + process.env.VUE_APP_BASE_API]: ''
+    //     }
+    //   }
+    // },
     port: port,
     open: true,
     overlay: {
@@ -50,7 +59,7 @@ module.exports = {
     },
     devtool: 'source-map'
   },
-  chainWebpack(config) {
+  chainWebpack (config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [
       {
@@ -93,7 +102,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

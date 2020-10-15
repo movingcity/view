@@ -68,8 +68,6 @@ export default {
       this.$nextTick(function () {
         var div = document.querySelector('.table-wrapper')
         div.style.height = window.innerHeight - 80 + 'px'
-        console.log('mounted: ', div)
-        console.log('mounted: ', window.innerHeight)
       })
     }
   }

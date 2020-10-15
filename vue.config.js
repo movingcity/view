@@ -29,6 +29,7 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
+  // 安装Nginx进行跨域处理 https://www.cnblogs.com/liuzhen1995/p/8671423.html https://blog.csdn.net/XIANZHIXIANZHIXIAN/article/details/78891657
   devServer: {
     proxy: {
       '/prod-api/view/': {

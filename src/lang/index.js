@@ -19,7 +19,7 @@ const messages = {
 }
 
 const i18n = new VueI18n({
-  locale: Cookies.get('language') || 'zh', // 设置语种
+  locale: localStorage.getItem('locale') || 'zh',
   messages, // 设置全局当地语言包,
   fallbackLocale: 'zh',
   numberFormats: {

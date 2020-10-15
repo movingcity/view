@@ -9,24 +9,60 @@
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
-      <!-- <el-dropdown class="avatar-container" trigger="click">
+      <div class="lang">
+        <el-dropdown>
+          <vue-fontawesome
+            :icon="['fas', 'language']"
+            size="2x"
+          />
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item
+              :disabled="$i18n.locale == 'zh'"
+              @click.native="toggleLang('zh')"
+            >中文</el-dropdown-item>
+            <el-dropdown-item
+              :disabled="$i18n.locale == 'en'"
+              @click.native="toggleLang('en')"
+            >English</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+      <!-- <el-dropdown
+        class="avatar-container"
+        trigger="click"
+      >
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img
+            :src="avatar+'?imageView2/1/w/80/h/80'"
+            class="user-avatar"
+          >
           <i class="el-icon-caret-bottom" />
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <el-dropdown-menu
+          slot="dropdown"
+          class="user-dropdown"
+        >
           <router-link to="/">
             <el-dropdown-item>
               Home
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
+          <a
+            target="_blank"
+            href="https://github.com/PanJiaChen/vue-admin-template/"
+          >
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
+          <a
+            target="_blank"
+            href="https://panjiachen.github.io/vue-element-admin-site/#/"
+          >
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
-          <el-dropdown-item divided @click.native="logout">
+          <el-dropdown-item
+            divided
+            @click.native="logout"
+          >
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -54,6 +90,23 @@ export default {
     toggleSideBar () {
       this.$store.dispatch('app/toggleSideBar')
     },
+    toggleLang (lang) {
+      if (lang === 'zh') {
+        localStorage.setItem('locale', 'zh')
+        this.$i18n.locale = localStorage.getItem('locale')
+        this.$message({
+          message: '切换为中文！',
+          type: 'success'
+        })
+      } else if (lang === 'en') {
+        localStorage.setItem('locale', 'en')
+        this.$i18n.locale = localStorage.getItem('locale')
+        this.$message({
+          message: 'Switch to English!',
+          type: 'success'
+        })
+      }
+    },
     async logout () {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
@@ -61,8 +114,15 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
+.lang {
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  margin: 0 8px;
+  cursor: pointer;
+  vertical-align: -0.15em;
+}
 .navbar {
   height: 50px;
   overflow: hidden;
@@ -84,6 +144,9 @@ export default {
     float: left;
   }
   .right-menu {
+    position: absolute;
+    right: 20px;
+    padding: 10px;
     float: right;
     height: 100%;
     line-height: 50px;

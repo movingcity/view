@@ -17,8 +17,13 @@
     <template v-for="column in configs.columns">
       <b-table-column
         :key="column.field"
+        centered
+        :label="$t(column.label)"
         v-bind="column"
       >
+        <!-- <template v-slot:header>
+          <div style="margin:10px">{{ $t(column.label) }}</div>
+        </template> -->
         <template
           v-if="column.searchable"
           slot="searchable"

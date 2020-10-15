@@ -21,21 +21,21 @@ export default {
       {
         isLoading: this.isLoading,
         columns: [
-          // { field: 'id', label: this.$t('aircraftType.id'), searchable: true, sortable: true },
-          { field: 'iataCode', label: this.$t('aircraftType.iataCode'), sticky: true, headerClass: 'sticky-column-header', cellClass: 'sticky-column-header', width: '80', searchable: true, sortable: true, numeric: false },
-          { field: 'icaoCode', label: this.$t('aircraftType.icaoCode'), searchable: true, sortable: true, numeric: false },
-          { field: 'description', label: this.$t('aircraftType.description'), searchable: true, sortable: true, numeric: false },
-          { field: 'localDescription', label: this.$t('aircraftType.localDescription'), searchable: true, sortable: true, numeric: false },
-          { field: 'sizeCategory', label: this.$t('aircraftType.sizeCategory'), searchable: true, sortable: true, numeric: false },
-          { field: 'maxPax', label: this.$t('aircraftType.maxPax'), searchable: true, sortable: true, numeric: false },
-          { field: 'maxFreightWeight', label: this.$t('aircraftType.maxFreightWeight'), searchable: true, sortable: true, numeric: false },
-          { field: 'maxTakeoffWeight', label: this.$t('aircraftType.maxTakeoffWeight'), searchable: true, sortable: true, numeric: false },
-          { field: 'aircraftLength', label: this.$t('aircraftType.aircraftLength'), searchable: true, sortable: true, numeric: false },
-          { field: 'wingSpan', label: this.$t('aircraftType.wingSpan'), searchable: true, sortable: true, numeric: false },
-          { field: 'minHandlingTime', label: this.$t('aircraftType.minHandlingTime'), searchable: true, sortable: true, numeric: false },
-          { field: 'maxAirbridge', label: this.$t('aircraftType.maxAirbridge'), searchable: true, sortable: true, numeric: false },
-          { field: 'createTime', label: this.$t('aircraftType.createTime'), searchable: true, sortable: true, numeric: false },
-          { field: 'updateTime', label: this.$t('aircraftType.updateTime'), searchable: true, sortable: true, numeric: false }
+          // { field: 'id', label: 'aircraftType.id', searchable: true, sortable: true },
+          { field: 'iataCode', label: 'aircraftType.iataCode', sticky: true, headerClass: 'sticky-column-header', cellClass: 'sticky-column-header', width: '80', searchable: true, sortable: true, numeric: false },
+          { field: 'icaoCode', label: 'aircraftType.icaoCode', searchable: true, sortable: true, numeric: false },
+          { field: 'description', label: 'aircraftType.description', searchable: true, sortable: true, numeric: false },
+          { field: 'localDescription', label: 'aircraftType.localDescription', searchable: true, sortable: true, numeric: false },
+          { field: 'sizeCategory', label: 'aircraftType.sizeCategory', searchable: true, sortable: true, numeric: false },
+          { field: 'maxPax', label: 'aircraftType.maxPax', searchable: true, sortable: true, numeric: false },
+          { field: 'maxFreightWeight', label: 'aircraftType.maxFreightWeight', searchable: true, sortable: true, numeric: false },
+          { field: 'maxTakeoffWeight', label: 'aircraftType.maxTakeoffWeight', searchable: true, sortable: true, numeric: false },
+          { field: 'aircraftLength', label: 'aircraftType.aircraftLength', searchable: true, sortable: true, numeric: false },
+          { field: 'wingSpan', label: 'aircraftType.wingSpan', searchable: true, sortable: true, numeric: false },
+          { field: 'minHandlingTime', label: 'aircraftType.minHandlingTime', searchable: true, sortable: true, numeric: false },
+          { field: 'maxAirbridge', label: 'aircraftType.maxAirbridge', searchable: true, sortable: true, numeric: false },
+          { field: 'createTime', label: 'aircraftType.createTime', searchable: true, sortable: true, numeric: false },
+          { field: 'updateTime', label: 'aircraftType.updateTime', searchable: true, sortable: true, numeric: false }
         ],
         dataTable: []
       }
